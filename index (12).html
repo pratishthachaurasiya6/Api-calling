@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            background-color: rgb(247, 234, 218);
+        }
+
+        .card {
+        background-color: hwb(0 96% 0%);
+            margin: 16px;
+            padding: 16px;
+            color: rgb(194, 34, 34);
+            text-align: center;
+            border-radius: 15px;
+            border: 0.3px solid rgb(231, 218, 218);
+            width: 266px;
+            font-size: 12px;
+            font-weight: 500;
+
+        }
+
+        .card-conatiner {
+            display: flex;
+            flex-wrap: wrap;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="card-conatiner"></div>
+    <script>
+        fetch('https://jsonplaceholder.typicode.com/users').then(j => {
+            return j.json()
+        }).then(data => {
+            data.forEach(user => {
+                const usercard = `<div class="card">
+
+                    <h2>Id-${user.id}</h2>
+                    <h2>Name-${user.name}</h2>
+                    <p><b>Email-</b>${user.email}</p>
+                    <p><b>Website-</b>${user.website}</p>
+                    <p><b>Address-</b>${user.address.city}</p>
+                    <p><b>Contact-</b>${user.phone}</p>
+                    <p><b>Company-</b>${user.company.name}</p>
+                    <p><b>Zipcode-</b>${user.address.zipcode}</p>
+                    <p>
+                    </div>`
+                document.querySelector('.card-conatiner').insertAdjacentHTML('beforeend', usercard)
+            });
+        })
+    </script>
+</body>
+
+</html>
